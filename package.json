@@ -1,0 +1,24 @@
+{
+  "name": "foyer-test-auto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "test": "cucumber-js --format json:reports/cucumber-report.json",
+  "report": "node generate-report.js",
+  "server" : "npx http-server reports/html -p 8085",
+  "test:report": "npm run test && npm run report && npm run server"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.3.0",
+    "axios": "^1.10.0",
+    "chai": "^5.2.0",
+    "dotenv": "^17.0.0"
+  },
+  "dependencies": {
+    "multiple-cucumber-html-reporter": "^3.9.3"
+  }
+}
