@@ -6,7 +6,7 @@
   "test": "cucumber-js --format json:reports/cucumber-report.json",
   "report": "node generate-report.js",
   "server" : "npx http-server reports/html -p 8085",
-  "test:report": "npm run test && npm run report && npm run server"
+  "ci-test": "npm run test && npm run report && npm run server"
 },
   "keywords": [],
   "author": "",

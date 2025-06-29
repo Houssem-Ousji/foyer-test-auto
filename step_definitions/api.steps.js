@@ -20,7 +20,9 @@ Given('the payload is:', (dataTable) => {
 When('I send a GET request', async () => {
     response = await apiClient.get(endpoint);
 });
-
+When('I send a DELETE request', async () => {
+    response = await apiClient.delete(endpoint);
+});
 When('I send a POST request', async () => {
       response = await apiClient.post(endpoint, payload);
   });
@@ -39,6 +41,11 @@ Then('the response body should contain {string}', (field) => {
 Then('the response message should be {string}', (message) => {
     if (response.data.message != message){
         throw new Error(`Expected message to be "${message}", but got "${response.data.message}"`);
+    }
+});
+Then('the message of response should be {string}',  (message) => {
+    if (response.data != message) {
+        throw new Error(`Expected message to be "${message}", but got "${response.data}"`);
     }
 });
 Then('the response body should equal to:', function (dataTable) {
