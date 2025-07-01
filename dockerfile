@@ -1,17 +1,16 @@
-# Use Node.js v23 slim image
-FROM node:23-slim
+FROM node:22.15.0
 
-# Set working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy only necessary files first for better caching (excluding node_modules and reports)
 COPY package*.json ./
 
-# Install dependencies
+RUN npm cache clean --force
+RUN npm install -g npm@10.5.0
+
 RUN npm install
 
-# Copy the rest of the workspace, still excluding node_modules and reports
 COPY . .
 
-# Run test suite
+EXPOSE 8085
+
 CMD ["npm", "run", "ci-test"]

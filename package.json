@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "test": "cucumber-js --format json:reports/cucumber-report.json",
+  "ci-test": "bash -c 'npm run test; npm run report; npm run server'",
+  "test": "npx cucumber-js --format json:reports/cucumber-report.json",
   "report": "node generate-report.js",
-  "server" : "npx http-server reports/html -p 8085",
-  "ci-test": "npm run test && npm run report && npm run server"
+  "server": "npx http-server reports/html -p 8085"
 },
   "keywords": [],
   "author": "",

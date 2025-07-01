@@ -5,8 +5,12 @@ const apiClient = require('../helpers/apiClient');
 let response;
 let endpoint;
 let payload;
+let createdId;
 
 Given('the API endpoint is {string}', (path) => {
+    if (path.includes('var')) {
+        path = path.replace('var', createdId);
+    }
     endpoint = path;
 });
 
@@ -25,6 +29,7 @@ When('I send a DELETE request', async () => {
 });
 When('I send a POST request', async () => {
       response = await apiClient.post(endpoint, payload);
+      createdId = response.data.chambre.idChambre;
   });
 When('I send a PUT request', async () => {
     response = await apiClient.put(endpoint, payload);
@@ -44,6 +49,9 @@ Then('the response message should be {string}', (message) => {
     }
 });
 Then('the message of response should be {string}',  (message) => {
+    if(message.includes('var')) {
+        message = message.replace('var', createdId);
+    }
     if (response.data != message) {
         throw new Error(`Expected message to be "${message}", but got "${response.data}"`);
     }
